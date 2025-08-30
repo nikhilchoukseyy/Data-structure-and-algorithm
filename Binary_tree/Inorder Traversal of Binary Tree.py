@@ -17,7 +17,7 @@
 # Input: root = [1]
 # Output: [1]
 
-def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+def inorderTraversal(self, root):
         result = []
 
         def inorder(root): 
