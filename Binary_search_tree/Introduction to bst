@@ -1,0 +1,152 @@
+# # 🌳 Binary Search Tree (BST) – Detailed Introduction
+
+# ## 1. What is a Binary Search Tree?
+
+# A **Binary Search Tree** is a special type of **Binary Tree** that follows these rules:
+
+# 1. Each node contains:
+
+#    * a `value`
+#    * a `left child`
+#    * a `right child`
+# 2. For any node:
+
+#    * Values in the **left subtree** are **smaller** than the node’s value.
+#    * Values in the **right subtree** are **greater** than the node’s value.
+#    * No duplicate values (in standard BST).
+
+# 👉 This property makes searching **efficient (log n)** if the tree is balanced.
+
+# ---
+
+# ## 2. Why use a BST?
+
+# * **Search faster** than linear search.
+# * Useful in problems involving **sorted order**, **range queries**, **successors/predecessors**.
+# * Foundation of **AVL tree, Red-Black Tree, Segment Tree, Treaps, etc.**
+
+# ---
+
+# ## 3. Structure of a BST Node in Python
+
+# ```python
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+# ```
+
+# This is the **most common template** you’ll see in LeetCode/DSA problems.
+
+# ---
+
+# ## 4. Basic Operations on BST
+
+# ### a) Insertion
+
+# * Start at root.
+# * If value < node → go left.
+# * If value > node → go right.
+# * Insert when a `None` spot is found.
+
+# ```python
+# def insert(root, val):
+#     if not root:
+#         return TreeNode(val)
+#     if val < root.val:
+#         root.left = insert(root.left, val)
+#     elif val > root.val:
+#         root.right = insert(root.right, val)
+#     return root
+# ```
+
+# ---
+
+# ### b) Search
+
+# * Similar to insertion but stop when found or reach `None`.
+
+# ```python
+# def search(root, val):
+#     if not root or root.val == val:
+#         return root
+#     if val < root.val:
+#         return search(root.left, val)
+#     else:
+#         return search(root.right, val)
+# ```
+
+# ---
+
+# ### c) Deletion
+
+# 3 cases:
+
+# 1. Node is **leaf** → just remove it.
+# 2. Node has **1 child** → replace node with child.
+# 3. Node has **2 children** → replace node with **inorder successor** (smallest in right subtree).
+
+# ```python
+# def delete(root, val):
+#     if not root:
+#         return None
+#     if val < root.val:
+#         root.left = delete(root.left, val)
+#     elif val > root.val:
+#         root.right = delete(root.right, val)
+#     else:
+#         # Case 1 & 2
+#         if not root.left:
+#             return root.right
+#         if not root.right:
+#             return root.left
+        
+#         # Case 3: find inorder successor
+#         succ = root.right
+#         while succ.left:
+#             succ = succ.left
+#         root.val = succ.val
+#         root.right = delete(root.right, succ.val)
+#     return root
+# ```
+
+# ---
+
+# ## 5. Traversals in BST
+
+# Traversal = visiting all nodes in some order.
+
+# * **Inorder (L → Root → R)** → Sorted order of elements.
+# * **Preorder (Root → L → R)** → Used to build trees.
+# * **Postorder (L → R → Root)** → Used in deletion, free memory.
+# * **Level Order (BFS)** → Used for tree structure printing.
+
+# ```python
+# def inorder(root):
+#     return inorder(root.left) + [root.val] + inorder(root.right) if root else []
+
+# def preorder(root):
+#     return [root.val] + preorder(root.left) + preorder(root.right) if root else []
+
+# def postorder(root):
+#     return postorder(root.left) + postorder(root.right) + [root.val] if root else []
+# ```
+
+# Level order (BFS with queue):
+
+# ```python
+# from collections import deque
+
+# def levelOrder(root):
+#     if not root: return []
+#     result, q = [], deque([root])
+#     while q:
+#         node = q.popleft()
+#         result.append(node.val)
+#         if node.left: q.append(node.left)
+#         if node.right: q.append(node.right)
+#     return result
+# ```
+
+# ---
