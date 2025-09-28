@@ -10,7 +10,7 @@
 # Output: [[],[0]]
 
 class Solution:
-    def subsets(self, nums: List[int]) -> List[List[int]]:
+    def subsets(self, nums):
         result = []
         def generate_subsets(nums,index=0 , curr = []): 
             if index == len(nums): 
