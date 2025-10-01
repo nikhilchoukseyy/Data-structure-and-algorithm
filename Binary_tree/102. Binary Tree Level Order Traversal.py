@@ -18,8 +18,12 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+from collections import deque
+from typing import List, Optional
+
+
 class Solution:
-    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]: # type: ignore
         if not root : 
             return []
 
