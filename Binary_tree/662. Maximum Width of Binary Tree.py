@@ -28,8 +28,12 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+from collections import deque
+from typing import Optional
+
+
 class Solution:
-    def widthOfBinaryTree(self, root: Optional[TreeNode]) -> int:
+    def widthOfBinaryTree(self, root: Optional[TreeNode]) -> int: # type: ignore
         if not root : 
             return 0
         
