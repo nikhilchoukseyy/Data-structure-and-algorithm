@@ -22,7 +22,7 @@
 // twitter.unfollow(1, 2);  // User 1 unfollows user 2.
 // twitter.getNewsFeed(1);  // User 1's news feed should return a list with 1 tweet id -> [5], since user 1 is no longer following user 2.
 
-
+import java.util.*; 
 class Twitter {
     private int time ; 
     private Map<Integer,List<int[]>> tweets ; 
