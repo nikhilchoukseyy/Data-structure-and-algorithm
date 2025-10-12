@@ -8,7 +8,7 @@ class TaskScheduler {
       freq[t-'A']++; 
     }
 
-    PriorityQueue<Integer> maxHeap = new PriorityQueue<>(); 
+    PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverse()); 
 
     for (int f : freq){
       if (f > 0) maxHeap.add(f); 
