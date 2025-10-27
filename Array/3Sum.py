@@ -22,7 +22,7 @@
 # Explanation: The only possible triplet sums up to 0.
 
 class Solution:
-    def threeSum(self, nums: List[int]) -> List[List[int]]:
+    def threeSum(self, nums):
         nums.sort()
         n = len(nums)
         result = [] 
