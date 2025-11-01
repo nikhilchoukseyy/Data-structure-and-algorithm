@@ -1,6 +1,6 @@
 
 import java.util.*; 
-class Solution{
+public class lastStoneWeight{
   public static int lastStoneWeight(int[] stones){
     PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
 
