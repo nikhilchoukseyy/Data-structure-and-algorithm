@@ -11,31 +11,41 @@
 
 
 # Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
-class Solution:
-    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
-        if not root : 
-            return True
+
+from collections import deque 
+class TreeNode:
+    def __init__(self, val):
+        self.val = val
+        self.left = None
+        self.right = None
+
+
+def isSymmetric(root):
+    if not root : 
+        return True
+    
+    queue = deque([root])
+    
+    while queue : 
+        size = len(queue)
+        level = []
+        for i in range(size): 
+            node = queue.popleft()
+            if node : 
+                level.append(node.val)
+                queue.append(node.left)
+                queue.append(node.right)
+            else : 
+                level.append(None)
         
-        queue = deque([root])
+        if level != level[::-1]: 
+            return False
         
-        while queue : 
-            size = len(queue)
-            level = []
-            for i in range(size): 
-                node = queue.popleft()
-                if node : 
-                    level.append(node.val)
-                    queue.append(node.left)
-                    queue.append(node.right)
-                else : 
-                    level.append(None)
-            
-            if level != level[::-1]: 
-                return False
-            
-        return True 
+    return True 
+
+root = TreeNode(4)
+root.left = TreeNode(2)
+root.right = TreeNode(2)
+root.left.left = TreeNode(3) 
+root.right.right = TreeNode(3)
+print(isSymmetric(root))
